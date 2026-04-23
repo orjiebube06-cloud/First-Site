@@ -30,10 +30,33 @@
     .card { padding: 20px; margin: 20px}
     h1 {font-size: 2em;}
   }
+  button {
+    background: #0070f3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px
+  }
+  button: hover {
+    background: #0051cc;
+  }
+  .project-box {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  #count {
+    font-weight: bold;
+    color: #ffd700;
+  }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0>"
   </head>
-  <div class="card">
+  <div class="project-box">
     <h1>Hi, I'm Ebube</h1>
     <p>First time coding. I'm learning web development from Imo State, Nigeria</p>
     <p>Day 1: I deployed my first website</p>
@@ -42,7 +65,6 @@
   <p>1. This website - HTML + CSS + Netlify</p>
   <p>2. Coming Soon.....</p>
   <p> <a href="mailto:orjiebube06@gmail.com" style="color: #a03131;">Contact me</a></p>
-  </div>
   <h3>Project 2: Click Counter</h3>
   <p>You clicked <span id="count">0</span>times</p>
   <button onclick="count++">Click me</button>
@@ -55,5 +77,6 @@
       countSpan.textContent = count;
     }
   </script>
+</div>
   </body>
 </html>
