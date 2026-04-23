@@ -20,10 +20,18 @@
       border-radius: 15px;
       max-width: 500px;
       margin: 0 auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
     }
     h1 { font-size: 2.5em; margin-bottom: 10px}
   p { font-size: 1.1em; opacity: 0.9; }
+  @media (max-width: 600px) {
+    .card { padding: 20px; margin: 20px}
+    h1 {font-size: 2em;}
+  }
   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0>"
   </head>
   <div class="card">
     <h1>Hi, I'm Ebube</h1>
@@ -35,5 +43,17 @@
   <p>2. Coming Soon.....</p>
   <p> <a href="mailto:orjiebube06@gmail.com" style="color: #a03131;">Contact me</a></p>
   </div>
+  <h3>Project 2: Click Counter</h3>
+  <p>You clicked <span id="count">0</span>times</p>
+  <button onclick="count++">Click me</button>
+
+  <script>
+    let count = 0;
+    const countSpan = document.getElementById('count');
+    document.querySelector('button').onclick = () => {
+      count++;
+      countSpan.textContent = count;
+    }
+  </script>
   </body>
 </html>
