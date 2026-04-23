@@ -56,16 +56,20 @@
     transition: all 0.2s;
   }
   body.dark {
-    background: linear-gradient(135deg, #1a1a1a 0%, @2d2d2d 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   }
-  body.dark  .card{
-background: rgba(255,255,255,0.1);
+  body.dark .card{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba (255,255,255,0.1);
+  }
+  body.dark button {
+    background: #333;
   }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0>"
   </head>
   <div class="card">
-<button onclick="document.body.classlist.toggle('dark')" style="position: absolute; top: 20px;">🌙</button>
+<button onclick="document.body.classlist.toggle('dark')" style="position: absolute; top: 20px; background: rgba (0,0,0,0.3); border: 1px solid #fff; color: #fff; padding: 8px 12px; border-radius: 5px; cursor: pointer;">🌙</button>
     <h1>Hi, I'm Ebube</h1>
     <p>First time coding. I'm learning web development from Imo State, Nigeria</p>
     <p>Day 1: I deployed my first website</p>
@@ -77,7 +81,6 @@ background: rgba(255,255,255,0.1);
   <h3>Project 2: Click Counter</h3>
   <p>You clicked <span id="count">0</span>times</p>
   <button onclick="count++">Click me</button>
-
 <button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
   <script>
     let count = 0;
