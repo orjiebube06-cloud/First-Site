@@ -52,11 +52,20 @@
   #count {
     font-weight: bold;
     color: #ffd700;
+    font-size: 1.3em;
+    transition: all 0.2s;
+  }
+  body.dark {
+    background: linear-gradient(135deg, #1a1a1a 0%, @2d2d2d 100%);
+  }
+  body.dark  .card{
+background: rgba(255,255,255,0.1);
   }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0>"
   </head>
-  <div class="project-box">
+  <div class="card">
+<button onclick="document.body.classlist.toggle('dark')" style="position: absolute; top: 20px;">🌙</button>
     <h1>Hi, I'm Ebube</h1>
     <p>First time coding. I'm learning web development from Imo State, Nigeria</p>
     <p>Day 1: I deployed my first website</p>
@@ -69,11 +78,14 @@
   <p>You clicked <span id="count">0</span>times</p>
   <button onclick="count++">Click me</button>
 
+<button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
   <script>
     let count = 0;
     const countSpan = document.getElementById('count');
     document.querySelector('button').onclick = () => {
       count++;
+      countSpan.style.transform = 'scale(1.3)';
+      setTimeout(() => countSpan.style.transform = 'scale(1)', 100);
       countSpan.textContent = count;
     }
   </script>
