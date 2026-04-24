@@ -81,29 +81,63 @@
   <p> <a href="mailto:orjiebube06@gmail.com" style="color: #a03131;">Contact me</a></p>
   <h3>Project 2: Click Counter</h3>
   <p>You clicked <span id="count">0</span>times</p>
+  <p>High Score: <span id="highScore">0</span></p>
   <button id="clickBtn">Click me</button>
+  <button id="resetBtn">Reset</button>
 <button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
 </div>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    //Counter
-    let count = 0;
+  document.addEventListener('DOMContentLoaded', function(){
+    // Load saved count from browser
+    let count = localStorage.getItem('clickCount') || 0;
+    let highscore = localStorage.getItem('highscore') || 0;
+
     const countSpan = document.getElementById('count');
     const clickBtn = document.getElementById('clickBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const darkBtn = document.getElementById('darkToggle');
 
-    if (clickBtn && countSpan) {
+    //Set initial values
+    countSpan.textContent = count;
+
+    // Click counter
+    if (clickBtn) {
       clickBtn.onclick = function() {
-        count = count + 1;
+        count++;
         countSpan.textContent = count;
+        localStorage.setItem('clickCount', count);
+
+        // Update high score
+        if (count > highScore) {
+          highscore = count;
+          localStorage.setItem('highScore', highScore);
+          document.getElementById('highScore').textContent = highScore;
+        }
       };
     }
 
-    //Dark mode
-    const darkBtn = document.getElementById('darkToggle');
+    // Reset button
+    if (resetBtn) {
+      resetBtn.onclick = function() {
+        count - 0;
+        countSpan.textContent = count;
+        localStorage.setItem('clickCount', 0);
+      };
+    }
+
+    //Dark mode with icon swap
     if (darkBtn) {
       darkBtn.onclick = function() {
         document.body.classList.toggle('dark');
+        // Swap icon: 🌙 → ☀️
+        darkBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
       };
+    }
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      if (darkBtn) darkBtn.textContent = '☀️';
     }
   });
 </script>
