@@ -84,9 +84,26 @@
   <p>High Score: <span id="highScore">0</span></p>
   <button id="clickBtn">Click me</button>
 <button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
+
+<h3>Project 3: Live Clock</h3>
+<p id="clock" style="font-size: 24px; bold; color: #ffd700;"></p>
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function(){
+
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: true
+      });
+      document.getElementById('clock').textContent = time;
+    }
+    updateClock(); // Run once immediately
+    setInterval(updateClock, 1000); // Update every second
     // Load saved count from browser
     let count = localStorage.getItem('clickCount') || 0;
     let highscore = localStorage.getItem('highscore') || 0;
