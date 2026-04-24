@@ -85,19 +85,25 @@
 <button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
 </div>
 <script>
+  //Wait for page to fully load first
+  document.addEventListener('DOMContentLoaded'), () =>  
   // Click counter code
   let count = 0;
   const countSpan = document.getElementById('count');
   const clickBtn = document.getElementById('clickBtn');
+  if (clickBtn) {
   clickBtn.onclick = () => {
     count++;
     countSpan.textContent = count;
   }
+}
   // Dark mode 
   const darkBtn = document.getElementById('darkToggle');
+  if (darkBtn) {
   darkBtn.onclick = () => {
     document.body.classlist.toggle('dark');
   }
+}
 </script>
   </body>
 </html>
