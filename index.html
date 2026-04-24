@@ -15,6 +15,7 @@
     margin: 0
     }
     .card {
+      position: relative;
       background: rgba (0,0,0,0.3);
       padding: 40px;
       border-radius: 15px;
@@ -69,7 +70,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0>"
   </head>
   <div class="card">
-<button onclick="document.body.classlist.toggle('dark')" style="position: absolute; top: 20px; background: rgba (0,0,0,0.3); border: 1px solid #fff; color: #fff; padding: 8px 12px; border-radius: 5px; cursor: pointer;">🌙</button>
+<button id="darkToggle" style="position: absolute; top: 20px; right: 20px; background: rgba (0,0,0,0.3); border: 1px solid #fff; color: #fff; padding: 8px 12px; border-radius: 5px; cursor: pointer;">🌙</button>
     <h1>Hi, I'm Ebube</h1>
     <p>First time coding. I'm learning web development from Imo State, Nigeria</p>
     <p>Day 1: I deployed my first website</p>
@@ -93,5 +94,18 @@
     }
   </script>
 </div>
+<script>
+  // Click counter code
+  let count = 0;
+  const countSpan = document.getElementById('count');
+  document.querySelector('.project-box button').onclick = () => {
+    count++;
+    countSpan.textContent = count;
+  }
+  // Dark mode toggle
+  document.getElementById('darkToggle').onclick = () => {
+    document.body.classlist.toggle('dark');
+  }
+</script>
   </body>
 </html>
