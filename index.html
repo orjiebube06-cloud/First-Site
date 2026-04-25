@@ -84,13 +84,64 @@
   <p>High Score: <span id="highScore">0</span></p>
   <button id="clickBtn">Click me</button>
 <button onclick="count = 0; document.getElementById('count').textContent = count;" style="background; #666; margin-left: 10px;">Reset</button>
-
 <h3>Project 3: Live Clock</h3>
 <p id="clock" style="font-size: 24px; bold; color: #ffd700;"></p>
+<h4>Project 4: To-Do List</h4>
+<input type="text" id="todoInput" placeholder="Add a task..." style="padding: 8px; width:70%; border-radius: 5px; border: none;">
+<button id="addTodo" style="padding: 8px 12px; margin-left: 5px; border: none; border-radius: 5px; background: #ffd700; font-weight: bold; cursor: pointer;">Add</button>
+<ul id="todoList" style="list-style: none; padding: 0; margin-top: 10px; text-align: left;"></ul>
 </div>
 <script>
+  // @ts-nocheck
   document.addEventListener('DOMContentLoaded', function(){
 
+    // To-Do List App
+    const todoInput = document.getElementById('todoInput');
+    const addTodoBtn = document.getElementById('addTodo');
+    const todoList = document.getElementById('todoList');
+
+    //Load saved todos
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+    function renderTodos() {
+      todoList.innerHTML = '';
+      todos.forEach((todo, index) => {
+        const li = document.createElement('li');
+        li.style.cssText = 'background: rgba(255, 255, 255, 0.1); padding: 10px; margin: 5px 0; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;';
+        li.innerHTML = 
+        <span style="text-decoration:${todo.done? 'line-through' : 'none'}; opacity:${todo.done? '0.6' : '1'};">${todo.text}</span>
+        <div>
+          <button onclick="toggleTodo(${index})" style="background: #4CAF50; border: none; padding: 5px 10px; border-radius: 3px; margin-right: 5px; cursor: pointer;">✓<button>
+            <button onclick="deleteTodo(${index})" style="background: #f44336; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">✕</button>
+            </div>
+          ;
+          todoList.appendChild(li);
+      });
+    }
+    
+    function saveTodos () {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+
+    addTodoBtn.onclick = function() {
+      if (todoInput.value.trim() !== '') {
+        todos.push({ text: todoInput.value, done: false});
+        todoInput.value = ''; 
+        saveTodos();
+        renderTodos();
+      }
+    };
+
+    // Enter key adds todo too 
+    todoInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') addTodoBtn.click();
+    });
+
+    window.toggleTodo = function(index) {
+      todos[index].done =!todos[index].done;
+      saveTodos();
+      renderTodos();
+    }
     // Live Clock
     function updateClock() {
       const now = new Date();
