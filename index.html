@@ -142,6 +142,15 @@
       saveTodos();
       renderTodos();
     }
+
+    windows.deleteTodo = function(index) {
+      todos.splice(index, 1);
+      saveTodos();
+      renderTodos();
+    }
+
+    renderTodos(); // Load todos on page start
+
     // Live Clock
     function updateClock() {
       const now = new Date();
